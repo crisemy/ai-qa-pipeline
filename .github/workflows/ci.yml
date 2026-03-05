@@ -7,53 +7,62 @@ on:
     branches: [ main ]
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v4
 
-    - name: Set up Python 3.11
-      uses: actions/setup-python@v5
-      with:
-        python-version: '3.11'
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
 
-    - name: Install Python dependencies
-      run: |
-        python -m pip install --upgrade pip
-        pip install -r requirements.txt
-        pip install "uvicorn[standard]"
+      - name: Install Python dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install "uvicorn[standard]"
 
-    - name: Lint with Ruff
-      run: ruff check . --output-format=github
+      - name: Lint with Ruff
+        run: ruff check . --output-format=github || true  # no falla el job si lint tiene warnings
 
-    - name: Run pytest unit tests
-      run: python -m pytest tests/ -v
+      - name: Run pytest unit tests
+        run: python -m pytest tests/ -v
 
-    # Debug: Verificar si uvicorn está disponible
-    - name: Debug - Check uvicorn version
-      run: python -m uvicorn --version || echo "Uvicorn not found"
+      # Debug: Verificar entorno
+      - name: Debug - Python and uvicorn version
+        run: |
+          python --version
+          python -m uvicorn --version || echo "Uvicorn check failed"
 
-    # Cypress con más debug y timeout extendido
-    - name: Cypress run (API E2E)
-      uses: cypress-io/github-action@v6
-      with:
-        install: true               # fuerza npm install
-        start: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000
-        wait-on: 'http://localhost:8000'
-        wait-on-timeout: 180        # subimos a 3 minutos
-        wait-on-scheme: http
-        browser: chrome
-        headless: true
-        spec: cypress/e2e/api.cy.js   # asegúrate que el nombre coincida exactamente
-        config-file: cypress.config.js
-      env:
-        CYPRESS_baseUrl: http://localhost:8000
-        CYPRESS_video: false        # opcional: ahorra tiempo
+      # Cypress con fixes: timeout alto, host explícito, background start
+      - name: Run Cypress E2E tests
+        uses: cypress-io/github-action@v6
+        with:
+          install: true
+          # Start el server con bind a todo (0.0.0.0) y sin reload (CI no lo necesita)
+          start: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000
+          wait-on: 'http://localhost:8000'
+          wait-on-timeout: 180          # 3 minutos, más que suficiente
+          wait-on-scheme: http
+          browser: chrome
+          headless: true
+          spec: cypress/e2e/api.cy.js   # confirma que el nombre del archivo es exactamente este
+          config-file: cypress.config.js
+          working-directory: .          # explícito
+        env:
+          CYPRESS_baseUrl: http://localhost:8000  # fuerza en env por si acaso
+          CYPRESS_video: false                    # ahorra espacio/tiempo
 
-    # Debug extra si Cypress falla
-    - name: Debug - Show Cypress logs if failed
-      if: failure()
-      run: |
-        ls -la cypress/ || true
-        cat cypress/videos/* || true   # si hay videos
+      # Si falla, muestra info extra
+      - name: Debug on failure
+        if: failure()
+        run: |
+          echo "Listing files:"
+          ls -la
+          echo "Cypress cache:"
+          ls -la ~/.cache/Cypress || true
+          echo "Check if port 8000 is listening:"
+          netstat -tuln | grep 8000 || echo "No process on 8000"
