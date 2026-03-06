@@ -1,10 +1,6 @@
-// cypress/support/e2e.ts
-// Este archivo se carga automáticamente antes de cada spec (.cy.ts)
-
-import './commands'; // Importa los comandos personalizados definidos en commands.ts
-// Ejemplo: comando custom simple (opcional por ahora)
+import './commands'; // Import specialized commands
 beforeEach(() => {
-  // cy.log('Support file cargado - Cypress inicializado');
-  // cy.viewport(1280, 720);   // ejemplo útil si querés viewport fijo
+  // cy.log('Support file charged - Cypress initialized'); // Useful for debugging support file loading
+  // cy.viewport(1280, 720);   // If you want to set viewport globally, but it's already in config, so optional here
 });
 
