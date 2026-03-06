@@ -14,7 +14,7 @@ describe('API Testing con Cypress - Todo API', () => {
   it('GET /todos/1 - Returns a specific todo', () => {
     cy.request(`${apiUrl}/todos/1`).its('body').should('include', {
       id: 1,
-      title: 'Buy milk',
+      title: 'Buy Milk',
     });
   });
 
