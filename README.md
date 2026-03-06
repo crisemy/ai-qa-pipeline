@@ -37,8 +37,7 @@
 2. Create and activate virtual environment
     ```bash
     python -m venv .venv
-    source .venv/bin/activate   # Linux/macOS
-# or on Windows: .venv\Scripts\activate
+    source .venv/bin/activate   # Linux/macOS or on Windows: .venv\Scripts\activate
 
 3. Install dependencies
     ```bash
@@ -67,5 +66,6 @@ See: .github/workflows/ci.yml
 ## MIT License – feel free to use, modify, and share.
 
 crisemy@gmail.com / https://www.linkedin.com/in/cristian-gn/
+
 Looking forward to connecting with QA, Test Automation, and AI-in-QA professionals!
 Happy testing!
