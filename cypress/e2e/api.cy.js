@@ -11,14 +11,14 @@ describe('API Testing con Cypress - Todo API', () => {
     });
   });
 
-  it('GET /todos/1 - debería retornar un todo específico', () => {
+  it('GET /todos/1 - Returns a specific todo', () => {
     cy.request(`${apiUrl}/todos/1`).its('body').should('include', {
       id: 1,
-      title: 'Comprar leche',
+      title: 'Buy milk',
     });
   });
 
-  it('POST /todos/ - debería crear un nuevo todo', () => {
+  it('POST /todos/ - Returns a specific todo', () => {
     const newTodo = {
       id: 100,
       title: 'Cypress test todo',
@@ -36,7 +36,7 @@ describe('API Testing con Cypress - Todo API', () => {
     });
   });
 
-  it('GET todo inexistente - debería fallar con 404', () => {
+  it('GET non-existent todo - should fail with 404', () => {
     cy.request({
       url: `${apiUrl}/todos/9999`,
       failOnStatusCode: false,

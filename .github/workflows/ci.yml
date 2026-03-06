@@ -26,13 +26,13 @@ jobs:
           pip install -r requirements.txt
           pip install "uvicorn[standard]"
 
-      - name: Lint with Ruff (warnings no fallan el job)
-        run: ruff check . || true   # || true evita que warnings fallen el CI
+      - name: Lint with Ruff 
+        run: ruff check . || true   # || true avoid warning exit code
 
       - name: Run pytest unit tests
         run: python -m pytest tests/ -v
 
-      # Start Uvicorn in background + wait manually (más confiable en v7)
+      # Start Uvicorn in background + wait manually
       - name: Start Uvicorn server in background
         run: python -m uvicorn src.main:app --host 0.0.0.0 --port 8000 &
 
@@ -41,7 +41,7 @@ jobs:
           for i in {1..30}; do
             curl -s -f http://localhost:8000 || sleep 2
           done
-          curl -s http://localhost:8000/todos/  # prueba final
+          curl -s http://localhost:8000/todos/  # Final check
 
       # Cypress: v7 + sin inputs inválidos
       - name: Run Cypress E2E tests
@@ -54,7 +54,7 @@ jobs:
           env: |
             CYPRESS_baseUrl=http://localhost:8000
         env:
-          CYPRESS_VIDEO: false  # ahorra tiempo/espacio en CI
+          CYPRESS_VIDEO: false  # Saves resources by not recording video in CI
 
       # Debug si falla
       - name: Debug on failure

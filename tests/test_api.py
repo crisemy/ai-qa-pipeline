@@ -8,7 +8,7 @@ def test_get_todos():
     response = client.get("/todos/")
     assert response.status_code == 200
     assert len(response.json()) == 2
-    assert response.json()[0]["title"] == "Comprar leche"
+    assert response.json()[0]["title"] == "Buy Milk"
 
 def test_get_todo_exists():
     response = client.get("/todos/1")
@@ -20,7 +20,7 @@ def test_get_todo_not_found():
     assert response.status_code == 404
 
 def test_create_todo():
-    new_todo = {"id": 3, "title": "Test nuevo", "completed": False}
+    new_todo = {"id": 3, "title": "Test new todo", "completed": False}
     response = client.post("/todos/", json=new_todo)
     assert response.status_code == 201
-    assert response.json()["title"] == "Test nuevo"
+    assert response.json()["title"] == "Test new todo"
