@@ -81,9 +81,13 @@ See: .github/workflows/ci.yml
 - notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
 - notebooks/02_jm1_random_forest_baseline.ipynb
 
+![Streamlit Dashboard](./img/StreamlitDashboard.png "Streamlit Dashboard")
+
 6. Streamlit
     ```bash
    streamlit run dashboard.py
+
+
 
 ## MIT License – feel free to use, modify, and share.
 
