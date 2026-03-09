@@ -91,6 +91,14 @@ See: .github/workflows/ci.yml
     ```bash
    streamlit run dashboard.py
 
+## Deployment (Streamlit Cloud)
+
+The interactive dashboard is live at:  
+https://ai-app-pipeline-fbsamrwcsgfpvjswnvjsfx.streamlit.app/
+
+Note: For Streamlit Cloud deployment, a minimal `requirements.txt` is used (only dashboard dependencies).  
+The full `requirementsOriginal.txt` is kept for local development, CI, and notebooks.
+
 
 ## MIT License – feel free to use, modify, and share.
 
