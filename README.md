@@ -6,26 +6,40 @@
 
 **Intelligent regression testing pipeline combining traditional QA automation with data-driven insights and AI-assisted test selection.**
 
-**Pursuit for this project**: Create CI/CD-integrated automation pipelines that reduce regression cycle time by ~40% and post-release defects by ~25% through intelligent, risk-based test selection using machine learning.
+**2026 Goal**: Demonstrate CI/CD-integrated pipelines that reduce regression cycle time by ~40% and post-release defects by ~25% through risk-based, ML-driven test prioritization.
+
+## Key Results (Simulation)
+
+Using NASA PROMISE JM1 dataset + Random Forest + SMOTE:
+
+- Captured **64.2% of defects** by executing only **29.9% of tests**  
+- Simulated **40% reduction in regression cycle time** (using LOC as time proxy)  
+- Defects missed: **35.8%**
+
+| Approach                          | Tests Executed (%) | Time Used (%) | Defects Detected (%) | Time Saved (%) | Defects Missed (%) |
+|-----------------------------------|--------------------|---------------|----------------------|----------------|--------------------|
+| Full Regression                   | 100.0             | 100.0        | 100.0               | 0.0           | 0.0               |
+| Intelligent Selection (risk-based)| 29.9              | 60.0         | 64.2                | 40.0          | 35.8              |
+
+![Intelligent Test Selection Curve](notebooks/images/cumulative_defects_vs_tests.png)  
+*(Cumulative defects detected vs. percentage of tests executed – intelligent vs. random)*
 
 ## Current Features
-- FastAPI-based sample Todo API (easy to extend and break for demo purposes)
-- Unit & integration tests with pytest + httpx
-- End-to-end API testing with Cypress (using `cy.request`)
-- Full CI pipeline with GitHub Actions: lint (Ruff), unit tests, E2E tests
-- Server starts reliably in CI (Uvicorn + health check wait)
-
-## Upcoming Features
-- Historical test metrics collection (duration, pass/fail, coverage)
-- Defect prediction model using NASA PROMISE datasets (Random Forest)
-- Intelligent test selection: run only high-risk tests based on ML predictions
-- Streamlit dashboard for before/after metrics visualization
+- FastAPI sample Todo API
+- Unit & integration tests (pytest + httpx)
+- E2E API testing (Cypress with `cy.request`)
+- Full CI pipeline (GitHub Actions): lint (Ruff), unit tests, E2E tests
+- Defect prediction baseline with Random Forest on NASA PROMISE JM1
+- Class imbalance handling with SMOTE
+- Intelligent test selection simulation (risk-based prioritization)
 
 ## Tech Stack
-- **Backend/API**: FastAPI, Uvicorn
-- **Testing**: pytest, httpx, Cypress
-- **CI/CD**: GitHub Actions
-- **Future**: Pandas, scikit-learn (RandomForest), Streamlit, SQLite/CSV for metrics
+- Backend/API: FastAPI, Uvicorn
+- Testing: pytest, httpx, Cypress
+- CI/CD: GitHub Actions
+- Data Science: Pandas, scikit-learn (RandomForest), imbalanced-learn (SMOTE)
+- Visualization: Matplotlib, Seaborn
+- Future: Streamlit dashboard
 
 ## Local Setup
 
@@ -62,6 +76,14 @@ Every push/PR triggers GitHub Actions workflow that runs:
 - pytest unit tests
 - Cypress E2E tests (server auto-started)
 See: .github/workflows/ci.yml
+
+## Noteboooks
+- notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
+- notebooks/02_jm1_random_forest_baseline.ipynb
+
+6. Streamlit
+    ```bash
+   streamlit run dashboard.py
 
 ## MIT License – feel free to use, modify, and share.
 
