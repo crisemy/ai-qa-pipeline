@@ -81,7 +81,7 @@ Every push/PR triggers GitHub Actions workflow that runs:
 - Cypress E2E tests (server auto-started)
 See: .github/workflows/ci.yml
 
-![Github Action Results](./images/GitHubActionResults.png "Github Action Results" width="250")
+![Github Action Results](./images/GitHubActionResults.png "Github Action Results")
 
 ## Noteboooks
 - notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
