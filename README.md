@@ -21,7 +21,7 @@ Using NASA PROMISE JM1 dataset + Random Forest + SMOTE:
 | Full Regression                   | 100.0             | 100.0        | 100.0               | 0.0           | 0.0               |
 | Intelligent Selection (risk-based)| 29.9              | 60.0         | 64.2                | 40.0          | 35.8              |
 
-![Intelligent Test Selection Curve](notebooks/images/cumulative_defects_vs_tests.png)  
+![Intelligent Test Selection Curve](./images/StreamlitDashboard.png "Streamlit Dashboard")  
 *(Cumulative defects detected vs. percentage of tests executed – intelligent vs. random)*
 
 ## Current Features
@@ -81,12 +81,9 @@ See: .github/workflows/ci.yml
 - notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
 - notebooks/02_jm1_random_forest_baseline.ipynb
 
-![Streamlit Dashboard](./img/StreamlitDashboard.png "Streamlit Dashboard")
-
 6. Streamlit
     ```bash
    streamlit run dashboard.py
-
 
 
 ## MIT License – feel free to use, modify, and share.
