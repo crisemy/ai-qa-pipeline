@@ -66,9 +66,13 @@ Using NASA PROMISE JM1 dataset + Random Forest + SMOTE:
     ```bash
     python -m pytest tests/ -v
 
+![Pytest Results](./images/PytestResults.png "Pytest Results")  
+
 6. Run Cypress E2E tests (API)
     ```bash
     npx cypress open
+
+![Cypress Results](./images/CypressResults.png "Cypress Results")  
 
 ## CI/CD
 Every push/PR triggers GitHub Actions workflow that runs:
@@ -76,6 +80,8 @@ Every push/PR triggers GitHub Actions workflow that runs:
 - pytest unit tests
 - Cypress E2E tests (server auto-started)
 See: .github/workflows/ci.yml
+
+![Github Action Results](./images/GitHubActionResults.png "Github Action Results")
 
 ## Noteboooks
 - notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
