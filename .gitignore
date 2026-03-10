@@ -34,6 +34,7 @@ yarn-error.log
 .streamlit/
 
 # IDEs
+.github/
 .vscode/
 .idea/
 *.swp
