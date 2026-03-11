@@ -1,6 +1,5 @@
 # AI-Driven QA Pipeline
 
-[![CI Status](https://github.com/crisemy/ai-qa-pipeline/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/crisemy/ai-qa-pipeline/actions/workflows/ci.yml)
 [![Python](https://img.shields.io/badge/Python-3.11-blue)](https://www.python.org/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
