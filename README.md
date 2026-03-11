@@ -84,10 +84,10 @@ See: .github/workflows/ci.yml
 ![Github Action Results](./images/GitHubActionResults.png "Github Action Results")
 
 ## Noteboooks
-- notebooks/01_jm1_exploration_preprocessing.ipynb – EDA & cleaning
-- notebooks/02_jm1_random_forest_baseline.ipynb
+- notebooks/01_jm1_exploration_preprocessing.ipynb –> EDA & cleaning
+- notebooks/02_jm1_random_forest_baseline.ipynb -> Random Forest
 
-6. Streamlit
+## Streamlit
     ```bash
    streamlit run dashboard.py
 
