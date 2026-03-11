@@ -5,7 +5,7 @@
 
 **Intelligent regression testing pipeline combining traditional QA automation with data-driven insights and AI-assisted test selection.**
 
-**2026 Goal**: Demonstrate CI/CD-integrated pipelines that reduce regression cycle time by ~40% and post-release defects by ~25% through risk-based, ML-driven test prioritization.
+**Goal**: Demonstrate CI/CD-integrated pipelines that reduce regression cycle time by ~40% and post-release defects by ~25% through risk-based, ML-driven test prioritization.
 
 ## Key Results (Simulation)
 
