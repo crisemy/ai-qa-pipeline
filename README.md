@@ -88,8 +88,7 @@ See: .github/workflows/ci.yml
 - notebooks/02_jm1_random_forest_baseline.ipynb -> Random Forest
 
 ## Streamlit
-    ```bash
-   streamlit run dashboard.py
+    ```streamlit run dashboard.py
 
 ## Deployment (Streamlit Cloud)
 
