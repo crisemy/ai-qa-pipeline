@@ -90,7 +90,6 @@ See: .github/workflows/ci.yml
 ## Streamlit
     ```bash
    streamlit run dashboard.py
-    ```
 
 ## Deployment (Streamlit Cloud)
 
